@@ -1,1 +1,17 @@
+# 
+os: linux
+dist: xenial # Use Ubuntu 16.04 as our Travis CI environment
 language: python3
+#python: "2.7"
+env: YELLOW="\033[1;33m" \
+     NC="\033[0m" # No Color
+
+install:
+  # Install required dependencies
+  - pip install --upgrade pylint # Use pip to install Pylint
+
+#before_script:
+
+script:
+  # Lint the Python files; wallaby.py is ignored due to a pylint directive in the file
+  - echo -e "${YELLOW}Analyzing code...${NC}" && pylint --errors-only *.py
